@@ -11,12 +11,11 @@ body, html {
     box-sizing: border-box;
 }
 
-/* Le body prend toute la hauteur de la page */
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 1.2s ease-in-out;
 }
 
 /* Animation de fade-in pour le body */
@@ -30,7 +29,7 @@ header {
     background-color: #1e2024;
     padding: 15px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    animation: slideDown 0.5s ease-out;
+    animation: slideDown 0.7s ease-out;
 }
 
 @keyframes slideDown {
@@ -137,6 +136,7 @@ nav ul li a:hover {
     font-size: 16px;
     line-height: 1.6;
     color: #555;
+    margin-bottom: 20px;
 }
 
 .controls {
@@ -160,7 +160,6 @@ nav ul li a:hover {
     transition: filter 0.3s ease, stroke 0.3s ease;
 }
 
-/* Surbrillance au survol */
 #produit-svg path:hover {
     filter: brightness(1.2); /* Augmente la luminosité */
     stroke: #ff7f00; /* Ajoute une bordure orange autour du path */
@@ -192,51 +191,100 @@ nav ul li a:hover {
     font-size: 24px;
     font-weight: bold;
     margin-top: 20px;
-    color: #ff7f00;
+    color: #333;
 }
 
-/* Note */
 .rating {
-    margin-top: 10px;
     font-size: 16px;
+    margin-top: 10px;
 }
 
-.rating span {
-    color: #555;
-}
-
-.action-buttons {
+/* Conteneur pour les aperçus des parties de la chaussure */
+.image-preview-container {
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
+    gap: 15px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.preview-box {
+    width: 32%; /* Trois images côte à côte */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.preview-box img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Effet au survol */
+.preview-box:hover {
+    transform: scale(1.05);
+}
+
+/* Animation de fade-in */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Boutons */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
 }
 
 .btn-add-to-cart, .btn-buy-now {
     background-color: #ff7f00;
     color: white;
-    padding: 12px 20px;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    padding: 15px 30px;
     font-size: 16px;
-    width: 100%;
-    margin-bottom: 10px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
 }
 
 .btn-add-to-cart:hover, .btn-buy-now:hover {
-    background-color: #e66c00;
-    transform: translateY(-5px);
+    background-color: #e56e00;
 }
 
-/* Footer */
 footer {
     background-color: #1e2024;
+    padding: 20px;
     color: white;
-    padding: 20px 0;
     text-align: center;
+    font-size: 14px;
     margin-top: auto;
-    animation: fadeInUp 1s ease-out;
 }
 
 footer p {
-    font-size: 16px;
+    margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #conteneur {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-image, .product-info {
+        width: 100%;
+    }
+
+    .product-info {
+        padding-left: 0;
+        text-align: center;
+    }
 }
