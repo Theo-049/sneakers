@@ -16,6 +16,13 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Animation de fade-in pour le body */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 /* Header */
@@ -23,6 +30,12 @@ header {
     background-color: #1e2024;
     padding: 15px 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    0% { transform: translateY(-50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
 }
 
 .header-container {
@@ -35,6 +48,11 @@ header {
 
 .logo {
     height: 50px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: scale(1.1);
 }
 
 nav ul {
@@ -65,7 +83,13 @@ nav ul li a:hover {
     margin: 60px auto;
     display: flex;
     justify-content: space-between;
-    flex-grow: 1; /* Permet de prendre de l'espace et pousse le footer en bas */
+    flex-grow: 1;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 /* Image de fond */
@@ -79,6 +103,11 @@ nav ul li a:hover {
     height: auto;
     border-radius: 8px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#background-image:hover {
+    transform: scale(1.05);
 }
 
 /* SVG superposé */
@@ -101,6 +130,7 @@ nav ul li a:hover {
     font-size: 28px;
     font-weight: bold;
     color: #333;
+    animation: fadeInUp 1s ease-out;
 }
 
 .product-info p {
@@ -111,6 +141,7 @@ nav ul li a:hover {
 
 .controls {
     margin-top: 20px;
+    animation: fadeInUp 1s ease-out;
 }
 
 .jscolor-container {
@@ -124,6 +155,19 @@ nav ul li a:hover {
     border: 1px solid #ddd;
 }
 
+/* Surbrillance des parties de la chaussure */
+#produit-svg path {
+    transition: filter 0.3s ease, stroke 0.3s ease;
+}
+
+/* Surbrillance au survol */
+#produit-svg path:hover {
+    filter: brightness(1.2); /* Augmente la luminosité */
+    stroke: #ff7f00; /* Ajoute une bordure orange autour du path */
+    stroke-width: 2; /* Modifie l'épaisseur de la bordure */
+}
+
+/* Animation des boutons de couleur */
 .colors {
     display: flex;
     gap: 10px;
@@ -135,11 +179,12 @@ nav ul li a:hover {
     border-radius: 50%;
     cursor: pointer;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .color:hover {
     transform: scale(1.2);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 /* Prix */
@@ -174,11 +219,12 @@ nav ul li a:hover {
     font-size: 16px;
     width: 100%;
     margin-bottom: 10px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-add-to-cart:hover, .btn-buy-now:hover {
     background-color: #e66c00;
+    transform: translateY(-5px);
 }
 
 /* Footer */
@@ -187,7 +233,8 @@ footer {
     color: white;
     padding: 20px 0;
     text-align: center;
-    margin-top: auto; /* Colle le footer au bas */
+    margin-top: auto;
+    animation: fadeInUp 1s ease-out;
 }
 
 footer p {
