@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un compte</title>
+    <link rel="stylesheet" href="compte.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header id="home">
+        <nav class="navbar">
+            <a href="index.html" class="logo">IMPULSE</a>
+            <div class="nav-links">
+                <ul>
+                    <li><a class="active" href="index.html">Accueil</a></li>
+                    <li><a href="index.html#collection">Collections</a></li>
+                    <li><a href="index.html#about">À propos</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <a href="compte.html">
+                        <img class="compte" src="compte.png" alt="compte">
+                    </a>   
+                    <a href="panier.html">
+                        <img class="panier" src="panier.png" alt="panier">
+                        <span id="cart-count">0</span>
+                    </a>
+                </ul>
+            </div>
+            <img src="menu.png" alt="menu hamburger" class="menu-hamburger">
+        </nav>
+    </header>
+
+    <div class="galactic-signup-container">
+        <div class="cosmic-signup-box">
+            <img class="stellar-compte-icon" src="compte.png" alt="compte">
+            <h2>Créer un compte</h2>
+            <form action="#" method="POST">
+                <div class="galaxy-input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Nom d'utilisateur" required>
+                </div>
+                <div class="galaxy-input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="galaxy-input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Mot de passe" required>
+                </div>
+                <div class="galaxy-input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Confirmer le mot de passe" required>
+                </div>
+                <button type="submit" class="nebula-btn">S'inscrire</button>
+            </form>
+            <p>Déjà un compte ? <a href="connexion.html">Se connecter</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Gestion du menu hamburger
+        document.querySelector('.menu-hamburger').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('mobile-menu');
+        });
+
+        // Ajouter la classe "scrolled" à la navbar lors du défilement
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) { // Ajuste la valeur selon tes besoins
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

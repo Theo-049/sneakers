@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votre Panier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header id="home">
+        <nav class="navbar">
+            <a href="index.html" class="logo">IMPULSE</a>
+            <div class="nav-links">
+                <ul>
+                    <li><a class="active" href="index.html">Accueil</a></li>
+                    <li><a href="index.html#collection">Collections</a></li>
+                    <li><a href="index.html#about">À propos</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <a href="compte.html">
+                        <img class="compte" src="compte.png" alt="compte">
+                    </a>  
+                    <a href="panier.html">
+                        <img class="panier" src="panier.png" alt="panier">
+                        <span id="cart-count">0</span>
+                    </a>                
+                </ul>
+            </div>
+            <img src="menu.png" alt="menu hamburger" class="menu-hamburger">
+        </nav>
+    </header>
+
+    <main class="Pierre">
+        <h1>Votre Panier</h1>
+        <div id="Alex"></div>
+        <div class="carte_foot">
+            <p>Articles dans le panier : <span id="cart-count">0</span></p>
+            <button id="clear-cart" class="btn_stop_stop">Vider le panier</button>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const cartContainer = document.getElementById("Alex");
+    const clearCartButton = document.getElementById("clear-cart");
+    const cartCountElements = document.querySelectorAll("#cart-count");
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function updateCartCount() {
+        cartCountElements.forEach(el => el.textContent = cart.length);
+    }
+
+    function displayCart() {
+        cartContainer.innerHTML = "";
+        if (cart.length === 0) {
+            cartContainer.innerHTML = "<p class='empty-cart'>Votre panier est vide.</p>";
+            updateCartCount();
+            return;
+        }
+
+        cart.forEach((item, index) => {
+            const itemElement = document.createElement("div");
+            itemElement.classList.add("cart-item");
+
+            // Vérifie si l'image existe bien
+            const imageSrc = item.image ? item.image : "placeholder.png"; // Image par défaut si vide
+
+            itemElement.innerHTML = `
+                <img src="${imageSrc}" alt="${item.name}" onerror="this.src='placeholder.png'">
+                <div class="item-info">
+                    <h2>${item.name}</h2>
+                    <p>Taille : <strong>${item.size}</strong></p>
+                </div>
+                <button class="btn-remove" onclick="removeFromCart(${index})">❌</button>
+            `;
+            cartContainer.appendChild(itemElement);
+        });
+
+        updateCartCount();
+    }
+
+    window.removeFromCart = function(index) {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        displayCart();
+    };
+
+    clearCartButton.addEventListener("click", () => {
+        localStorage.removeItem("cart");
+        cart = [];
+        displayCart();
+    });
+
+    displayCart();
+});
+
+
+        const menuHamburger = document.querySelector(".menu-hamburger");
+        const navLinks = document.querySelector(".nav-links");
+        const navbar = document.querySelector(".navbar");
+
+        menuHamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("mobile-menu");
+        });
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: linear-gradient(120deg, #1E1A3B, #003F7F);
+            color: #F5F5F5;
+            text-align: center;
+            padding-top: 150px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .Pierre {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .Pierre h1 {
+            font-size: 2em;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        #Alex {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .carte_foot {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            font-size: 1.2em;
+        }
+
+        .empty-cart {
+            font-size: 1.2em;
+            color: #FFD700;
+            margin-top: 20px;
+        }
+
+        .btn_stop_stop {
+            display: inline-block;
+            background: #E63946;
+            color: white;
+            font-size: 16px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s ease-in-out;
+        }
+
+        .btn_stop_stop:hover {
+            background: #C1272D;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cart-item:hover {
+            transform: scale(1.02);
+        }
+
+        .cart-item img {
+            width: 250px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #FFD700;
+        }
+
+        .item-info {
+            flex-grow: 1;
+            text-align: left;
+            padding: 0 15px;
+        }
+
+        .item-info h2 {
+            font-size: 18px;
+            color: #FFD700;
+        }
+
+        .item-info p {
+            font-size: 14px;
+            color: white;
+        }
+
+        .btn-remove {
+            background: transparent;
+            border: none;
+            font-size: 20px;
+            color: #E63946;
+            cursor: pointer;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .btn-remove:hover {
+            color: #C1272D;
+        }
+
+        .panier {
+            position: relative;
+        }
+
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: auto;
+            font-size: 14px;
+        }
+
+        footer .footer-container p {
+            margin: 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .Pierre {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .item-info {
+                padding: 10px 0;
+            }
+
+            .btn-remove {
+                font-size: 18px;
+            }
+        }
+    </style>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2025 IMPULSE. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>

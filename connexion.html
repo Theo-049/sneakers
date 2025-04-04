@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Se connecter</title>
+    <link rel="stylesheet" href="connexion.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header id="home">
+        <nav class="navbar">
+            <a href="../index.html" class="logo">IMPULSE</a>
+            <div class="nav-links">
+                <ul>
+                    <li><a class="active" href="index.html">Accueil</a></li>
+                    <li><a href="index.html#collection">Collections</a></li>
+                    <li><a href="index.html#about">À propos</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <a href="compte.html">
+                        <img class="compte" src="compte.png" alt="compte">
+                    </a>   
+                    <a href="panier.html">
+                        <img class="panier" src="panier.png" alt="panier">
+                        <span id="cart-count">0</span>
+                    </a>
+                </ul>
+            </div>
+            <img src="menu.png" alt="menu hamburger" class="menu-hamburger">
+        </nav>
+    </header>
+
+    <div class="login-container-sidereal">
+        <div class="login-box-cosmic">
+            <img class="compte-galactique" src="compte.png" alt="compte">
+            <h2 class="titre-connexion">Se connecter</h2>
+            <form action="#" method="POST">
+                <div class="input-galaxy-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="input-galaxy-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Mot de passe" required>
+                </div>
+                <button type="submit" class="btn-galactic">Connexion</button>
+            </form>
+            <p class="p-connexion">Pas encore de compte ? <a href="compte.html">Créer un compte</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Gestion du menu hamburger
+        document.querySelector('.menu-hamburger-alien').addEventListener('click', function() {
+            document.querySelector('.nav-links-etrange').classList.toggle('mobile-menu');
+        });
+
+        // Ajouter la classe "scrolled" à la navbar lors du défilement
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar-alien');
+            if (window.scrollY > 100) { // Ajuste la valeur selon tes besoins
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
